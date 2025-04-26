@@ -8,70 +8,91 @@
   <style>
     body {
       margin: 0;
-      background-color: #0d0d0d;
+      background-color: #111;
       display: flex;
       align-items: center;
       justify-content: center;
       height: 100vh;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      padding: 1vh;
+      padding: 2vh;
       position: relative;
       overflow: hidden;
-      flex-direction: column; /* Ensure content aligns vertically */
     }
 
     .title-container {
-      background-color: #0d0d0d;
-      border-radius: 1.5vw;
-      padding: 2vh 4vw;
+      background-color: #1e1e1e;
+      border-radius: 20px;
+      padding: 3vh 5vw;
       max-width: 80vw;
       text-align: center;
+      animation: greenGlow 8s linear infinite;
       visibility: hidden; /* Hide until loading is complete */
+      box-shadow: 0 4px 30px rgba(0, 255, 0, 0.3);
     }
 
     h1 {
-      font-size: 2em; /* Smaller font size */
-      color: #00cc00; /* Solid green color */
+      font-size: 5vw;
+      background: linear-gradient(270deg, #00cc00, #66ff66, #00ff00);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientMovement 5s linear infinite;
       margin: 0;
-      transition: all 0.3s ease-in-out;
-      user-select: none; /* Disable text selection */
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
+      text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    }
+
+    @keyframes gradientMovement {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes greenGlow {
+      0% {
+        box-shadow: 0 0 1vw #00cc00;
+      }
+      50% {
+        box-shadow: 0 0 1vw #66ff66;
+      }
+      100% {
+        box-shadow: 0 0 1vw #00cc00;
+      }
     }
 
     /* Navigation tabs style */
     .nav-tabs {
       position: absolute;
-      top: 10px;
-      right: 10px;
+      top: 20px;
+      left: 20px;
       display: flex;
       align-items: center;
     }
 
     .nav-tab {
       color: #00cc00;
-      padding: 10px 20px;
-      margin-left: 10px;
-      font-size: 1.2em;
-      border: 2px solid #00cc00; /* Green border */
-      border-radius: 8px; /* Less rounded corners */
+      padding: 12px 20px;
+      margin-left: 15px;
+      font-size: 1.4em;
+      border: 2px solid #00cc00;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       transition: all 0.3s ease;
-      outline: none;
       cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 255, 0, 0.2);
     }
 
     .nav-tab i {
       margin-right: 8px;
     }
 
-    /* Hover effect with green outline animation */
     .nav-tab:hover {
       color: #00ff00;
-      transform: scale(1.05); /* Slightly enlarge the tab */
-      box-shadow: 0 0 5px #00cc00, 0 0 10px #00ff00; /* Green glow */
+      transform: translateY(-5px); /* Slightly lift up the tab */
+      box-shadow: 0 0 15px #00ff00, 0 0 20px #00cc00;
     }
 
-    /* Active tab style */
     .nav-tab.active {
       background-color: #00cc00;
       color: #121212;
@@ -85,16 +106,16 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.9);
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       color: #00cc00;
-      font-size: 2vw;
+      font-size: 3vw;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       z-index: 9999;
-      backdrop-filter: blur(5px); /* Strong blur effect */
+      backdrop-filter: blur(5px);
       visibility: visible;
       opacity: 1;
       transition: opacity 1s ease-out;
@@ -103,10 +124,10 @@
     /* Loading Bar */
     .loading-bar-container {
       width: 80%;
-      height: 10px;
+      height: 12px;
       background-color: #333;
-      margin-top: 3vh;
-      border-radius: 5px;
+      margin-top: 4vh;
+      border-radius: 6px;
       position: relative;
     }
 
@@ -114,8 +135,8 @@
       width: 0%;
       height: 100%;
       background-color: #00cc00;
-      animation: loadingBar 10s linear forwards; /* 10-second loading bar */
-      border-radius: 5px;
+      animation: loadingBar 10s linear forwards;
+      border-radius: 6px;
     }
 
     @keyframes loadingBar {
@@ -123,24 +144,11 @@
       100% { width: 100%; }
     }
 
-    /* Fade out the loading overlay */
     .loading-overlay.loaded {
       opacity: 0;
       visibility: hidden;
-      backdrop-filter: blur(0); /* Remove blur */
+      backdrop-filter: blur(0);
       transition: opacity 1s ease-out, backdrop-filter 1s ease-out;
-    }
-
-    /* Content Section Style */
-    .content {
-      display: none;
-      padding: 2vh;
-      color: white;
-      text-align: center;
-      flex-grow: 1;
-    }
-    .content.active {
-      display: block;
     }
   </style>
 </head>
@@ -169,22 +177,6 @@
     </div>
   </div>
 
-  <!-- Content Sections -->
-  <div class="content" id="homeContent">
-    <h2>Welcome to Viper Revamped!</h2>
-    <p>This is the home page content.</p>
-  </div>
-
-  <div class="content" id="gamesContent">
-    <h2>Games</h2>
-    <p>This is the games page content.</p>
-  </div>
-
-  <div class="content" id="searchContent">
-    <h2>Search</h2>
-    <p>This is the search page content.</p>
-  </div>
-
   <script>
     // Set up the loading overlay to fade out and remove
     setTimeout(function() {
@@ -195,9 +187,8 @@
       }, 1000);
     }, 10000);
 
-    // JavaScript for handling active tab selection and showing content
+    // JavaScript for handling active tab selection
     const tabs = document.querySelectorAll('.nav-tab');
-    const contents = document.querySelectorAll('.content');
 
     tabs.forEach(tab => {
       tab.addEventListener('click', function() {
@@ -206,25 +197,8 @@
 
         // Add 'active' class to the clicked tab
         tab.classList.add('active');
-
-        // Hide all content sections
-        contents.forEach(content => content.classList.remove('active'));
-
-        // Show content based on selected tab
-        const selectedTab = tab.id;
-        if (selectedTab === 'homeTab') {
-          document.getElementById('homeContent').classList.add('active');
-        } else if (selectedTab === 'gamesTab') {
-          document.getElementById('gamesContent').classList.add('active');
-        } else if (selectedTab === 'searchTab') {
-          document.getElementById('searchContent').classList.add('active');
-        }
       });
     });
-
-    // By default, show the home content when the page loads
-    document.getElementById('homeContent').classList.add('active');
-    document.getElementById('homeTab').classList.add('active');
   </script>
 </body>
 </html>
