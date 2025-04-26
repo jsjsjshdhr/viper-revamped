@@ -98,6 +98,7 @@
       align-items: center;
       transition: all 0.3s ease;
       outline: none;
+      cursor: pointer;
     }
 
     .nav-tab i {
@@ -111,20 +112,11 @@
       box-shadow: 0 0 5px #00cc00, 0 0 10px #00ff00; /* Green glow */
     }
 
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 7vw;
-      }
-
-      .title-container {
-        padding: 3vh 5vw;
-        border-radius: 3vw;
-      }
-
-      .nav-tab {
-        font-size: 1em;
-        padding: 8px 15px;
-      }
+    /* Active tab style */
+    .nav-tab.active {
+      background-color: #00cc00;
+      color: #121212;
+      border-color: #00ff00;
     }
 
     /* Loading Overlay */
@@ -147,56 +139,6 @@
       visibility: visible;
       opacity: 1;
       transition: opacity 1s ease-out;
-    }
-
-    /* Cool Message Text */
-    .loading-overlay .message {
-      margin: 1vw 0;
-      opacity: 0;
-      font-size: 2.5vw;
-      letter-spacing: 2px;
-      color: #66ff66;
-      font-weight: bold;
-      text-transform: uppercase;
-      text-shadow: 0 0 5px #66ff66, 0 0 10px #00cc00;
-      animation: fadeInOut 10s ease-in-out forwards;
-      visibility: hidden; /* Initially hidden */
-    }
-
-    .loading-overlay .message:nth-child(1) {
-      animation-delay: 0s;
-    }
-
-    .loading-overlay .message:nth-child(2) {
-      animation-delay: 2.5s;
-    }
-
-    .loading-overlay .message:nth-child(3) {
-      animation-delay: 5s;
-    }
-
-    .loading-overlay .message:nth-child(4) {
-      animation-delay: 7.5s;
-    }
-
-    /* Fade In and Out */
-    @keyframes fadeInOut {
-      0% {
-        opacity: 0;
-        visibility: hidden;
-      }
-      25% {
-        opacity: 1;
-        visibility: visible;
-      }
-      50% {
-        opacity: 0;
-        visibility: hidden;
-      }
-      100% {
-        opacity: 0;
-        visibility: hidden;
-      }
     }
 
     /* Loading Bar */
@@ -234,10 +176,6 @@
 <body>
   <!-- Loading Overlay -->
   <div class="loading-overlay">
-    <div class="message">Starting site...</div>
-    <div class="message">Parsing code...</div>
-    <div class="message">Bypassing detections...</div>
-    <div class="message">Deploying site...</div>
     <div class="loading-bar-container">
       <div class="loading-bar"></div>
     </div>
@@ -249,31 +187,39 @@
 
   <!-- Navigation Tabs -->
   <div class="nav-tabs">
-    <div class="nav-tab">
+    <div class="nav-tab" id="homeTab">
       <i class="fas fa-home"></i> Home
     </div>
-    <div class="nav-tab">
+    <div class="nav-tab" id="gamesTab">
       <i class="fas fa-gamepad"></i> Games
     </div>
-    <div class="nav-tab">
+    <div class="nav-tab" id="searchTab">
       <i class="fas fa-search"></i> Search
     </div>
   </div>
 
   <script>
-    // Simulate loading complete after 10 seconds
+    // Set up the loading overlay to fade out and remove
     setTimeout(function() {
-      // Hide the loading overlay and apply fade-out effect
       document.querySelector('.loading-overlay').classList.add('loaded');
-      
-      // Show the main content
-      document.querySelector('.title-container').style.visibility = 'visible';
-      
-      // After fade-out is complete, remove the loading overlay from DOM
       setTimeout(function() {
         document.querySelector('.loading-overlay').remove();
-      }, 1000); // Wait for the fade-out transition to finish (1 second)
-    }, 10000); // 10 seconds to match the loading animation duration
+        document.querySelector('.title-container').style.visibility = 'visible';
+      }, 1000);
+    }, 10000);
+
+    // JavaScript for handling active tab selection
+    const tabs = document.querySelectorAll('.nav-tab');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', function() {
+        // Remove 'active' class from all tabs
+        tabs.forEach(t => t.classList.remove('active'));
+
+        // Add 'active' class to the clicked tab
+        tab.classList.add('active');
+      });
+    });
   </script>
 </body>
 </html>
