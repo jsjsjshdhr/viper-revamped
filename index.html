@@ -69,19 +69,33 @@
       cursor: pointer;
       transition: all 0.3s ease;
       text-align: center;
+      position: relative;
     }
 
     .nav-tab:hover {
       background-color: #333;
     }
 
-    .nav-tab.active {
+    .nav-tab::after {
+      content: "";
+      display: block;
+      height: 3px;
+      width: 0%;
       background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
       background-size: 300% 300%;
+      animation: rainbow 10s linear infinite;
+      transition: width 0.4s ease;
+      margin-top: 5px;
+    }
+
+    .nav-tab.active {
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: rainbow 10s linear infinite;
-      border-bottom: 3px solid transparent;
+    }
+
+    .nav-tab.active::after {
+      width: 100%;
     }
 
     .loading-overlay {
