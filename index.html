@@ -149,10 +149,17 @@
       transition: opacity 2s ease-out;
     }
 
+    /* Cool Message Text */
     .loading-overlay .message {
       margin: 1vw 0;
       opacity: 0;
-      animation: fadeInOut 4s ease-in-out infinite;
+      font-size: 2.5vw;
+      letter-spacing: 2px;
+      color: #66ff66;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-shadow: 0 0 5px #66ff66, 0 0 10px #00cc00;
+      animation: fadeInOut 10s ease-in-out forwards;
       visibility: hidden; /* Initially hidden */
     }
 
@@ -161,17 +168,18 @@
     }
 
     .loading-overlay .message:nth-child(2) {
-      animation-delay: 10s;
+      animation-delay: 12s;
     }
 
     .loading-overlay .message:nth-child(3) {
-      animation-delay: 20s;
+      animation-delay: 24s;
     }
 
     .loading-overlay .message:nth-child(4) {
-      animation-delay: 30s;
+      animation-delay: 36s;
     }
 
+    /* Fade In and Out */
     @keyframes fadeInOut {
       0% {
         opacity: 0;
@@ -191,7 +199,7 @@
       }
     }
 
-    /* Loading bar */
+    /* Loading Bar */
     .loading-bar-container {
       width: 80%;
       height: 10px;
@@ -258,7 +266,7 @@
       document.querySelector('.loading-overlay').classList.add('loaded');
       // Show the main content
       document.querySelector('.title-container').style.visibility = 'visible';
-    }, 10000); // 40 seconds to match the slower loading
+    }, 7500); // 40 seconds to match the slower loading
   </script>
 </body>
 </html>
