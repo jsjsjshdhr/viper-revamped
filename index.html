@@ -17,6 +17,7 @@
       padding: 1vh;
       position: relative;
       overflow: hidden;
+      flex-direction: column; /* Ensure content aligns vertically */
     }
 
     .title-container {
@@ -171,6 +172,18 @@
       backdrop-filter: blur(0); /* Remove blur */
       transition: opacity 1s ease-out, backdrop-filter 1s ease-out;
     }
+
+    /* Content Section Style */
+    .content {
+      display: none;
+      padding: 2vh;
+      color: white;
+      text-align: center;
+      flex-grow: 1;
+    }
+    .content.active {
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -198,6 +211,22 @@
     </div>
   </div>
 
+  <!-- Content Sections -->
+  <div class="content" id="homeContent">
+    <h2>Welcome to Viper Revamped!</h2>
+    <p>This is the home page content.</p>
+  </div>
+
+  <div class="content" id="gamesContent">
+    <h2>Games</h2>
+    <p>This is the games page content.</p>
+  </div>
+
+  <div class="content" id="searchContent">
+    <h2>Search</h2>
+    <p>This is the search page content.</p>
+  </div>
+
   <script>
     // Set up the loading overlay to fade out and remove
     setTimeout(function() {
@@ -208,8 +237,9 @@
       }, 1000);
     }, 10000);
 
-    // JavaScript for handling active tab selection
+    // JavaScript for handling active tab selection and showing content
     const tabs = document.querySelectorAll('.nav-tab');
+    const contents = document.querySelectorAll('.content');
 
     tabs.forEach(tab => {
       tab.addEventListener('click', function() {
@@ -218,8 +248,25 @@
 
         // Add 'active' class to the clicked tab
         tab.classList.add('active');
+
+        // Hide all content sections
+        contents.forEach(content => content.classList.remove('active'));
+
+        // Show content based on selected tab
+        const selectedTab = tab.id;
+        if (selectedTab === 'homeTab') {
+          document.getElementById('homeContent').classList.add('active');
+        } else if (selectedTab === 'gamesTab') {
+          document.getElementById('gamesContent').classList.add('active');
+        } else if (selectedTab === 'searchTab') {
+          document.getElementById('searchContent').classList.add('active');
+        }
       });
     });
+
+    // By default, show the home content when the page loads
+    document.getElementById('homeContent').classList.add('active');
+    document.getElementById('homeTab').classList.add('active');
   </script>
 </body>
 </html>
