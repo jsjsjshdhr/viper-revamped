@@ -265,8 +265,14 @@
     setTimeout(function() {
       // Hide the loading overlay and apply fade-out effect
       document.querySelector('.loading-overlay').classList.add('loaded');
+      
       // Show the main content
       document.querySelector('.title-container').style.visibility = 'visible';
+      
+      // After fade-out is complete, remove the loading overlay from DOM
+      setTimeout(function() {
+        document.querySelector('.loading-overlay').remove();
+      }, 1000); // Wait for the fade-out transition to finish (1 second)
     }, 10000); // 10 seconds to match the loading animation duration
   </script>
 </body>
