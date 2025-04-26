@@ -165,6 +165,35 @@
     .content-section.active {
       display: block;
     }
+
+    /* Game button style */
+    .game-button {
+      display: inline-block;
+      background-color: #333;
+      color: #fff;
+      padding: 10px 15px;
+      margin: 10px;
+      border-radius: 8px;
+      text-align: center;
+      width: 150px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .game-button:hover {
+      background-color: #444;
+      transform: translateY(-3px);
+    }
+
+    .game-button img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .game-title {
+      margin-top: 10px;
+      font-size: 1.1em;
+    }
   </style>
 </head>
 <body>
@@ -198,8 +227,19 @@
     <p>Content for the home section goes here.</p>
   </div>
   <div id="gamesContent" class="content-section">
-    <h2>Welcome to the Games Section</h2>
-    <p>Content for the games section goes here.</p>
+    <h2>Games</h2>
+    <div class="game-button">
+      <img src="https://via.placeholder.com/150" alt="Game 1">
+      <div class="game-title">Game 1</div>
+    </div>
+    <div class="game-button">
+      <img src="https://via.placeholder.com/150" alt="Game 2">
+      <div class="game-title">Game 2</div>
+    </div>
+    <div class="game-button">
+      <img src="https://via.placeholder.com/150" alt="Game 3">
+      <div class="game-title">Game 3</div>
+    </div>
   </div>
   <div id="searchContent" class="content-section">
     <h2>Welcome to the Search Section</h2>
