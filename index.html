@@ -40,6 +40,7 @@
       -webkit-text-fill-color: transparent;
       animation: green 10s linear infinite;
       margin: 0;
+      transition: all 0.3s ease-in-out;
     }
 
     @keyframes green {
@@ -70,6 +71,12 @@
       100% {
         box-shadow: 0 0 1vw #00cc00;
       }
+    }
+
+    /* Hover effect */
+    h1:hover {
+      animation: green 5s linear infinite; /* Speed up animation */
+      transform: scale(1.1); /* Slightly enlarge the label */
     }
 
     @media (max-width: 600px) {
