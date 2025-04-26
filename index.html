@@ -76,8 +76,12 @@
     }
 
     .nav-tab.active {
-      color: #fff;
-      border-bottom: 3px solid #fff;
+      background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rainbow 10s linear infinite;
+      border-bottom: 3px solid transparent;
     }
 
     .loading-overlay {
