@@ -17,6 +17,7 @@
       padding: 1vh;
       position: relative;
       overflow: hidden;
+      flex-direction: column;
     }
 
     .title-container {
@@ -56,6 +57,7 @@
       right: 10px;
       display: flex;
       align-items: center;
+      z-index: 1;
     }
 
     .nav-tab {
@@ -148,12 +150,20 @@
       100% { width: 100%; background-position: 100% 50%; }
     }
 
-    /* Fade out the loading overlay */
-    .loading-overlay.loaded {
-      opacity: 0;
-      visibility: hidden;
-      backdrop-filter: blur(0); /* Remove blur */
-      transition: opacity 1s ease-out, backdrop-filter 1s ease-out;
+    /* Content Sections */
+    .content-section {
+      display: none;
+      padding: 20px;
+      background-color: #212121;
+      color: white;
+      border-radius: 10px;
+      margin-top: 20px;
+      max-width: 80vw;
+      text-align: center;
+    }
+
+    .content-section.active {
+      display: block;
     }
   </style>
 </head>
@@ -182,6 +192,20 @@
     </div>
   </div>
 
+  <!-- Content Sections -->
+  <div id="homeContent" class="content-section">
+    <h2>Welcome to the Home Section</h2>
+    <p>Content for the home section goes here.</p>
+  </div>
+  <div id="gamesContent" class="content-section">
+    <h2>Welcome to the Games Section</h2>
+    <p>Content for the games section goes here.</p>
+  </div>
+  <div id="searchContent" class="content-section">
+    <h2>Welcome to the Search Section</h2>
+    <p>Content for the search section goes here.</p>
+  </div>
+
   <script>
     // Set up the loading overlay to fade out and remove
     setTimeout(function() {
@@ -192,16 +216,23 @@
       }, 1000);
     }, 10000);
 
-    // JavaScript for handling active tab selection
+    // JavaScript for handling active tab selection and content display
     const tabs = document.querySelectorAll('.nav-tab');
+    const sections = document.querySelectorAll('.content-section');
 
     tabs.forEach(tab => {
       tab.addEventListener('click', function() {
-        // Remove 'active' class from all tabs
+        // Remove 'active' class from all tabs and hide all sections
         tabs.forEach(t => t.classList.remove('active'));
+        sections.forEach(section => section.classList.remove('active'));
 
-        // Add 'active' class to the clicked tab
+        // Add 'active' class to the clicked tab and display the corresponding section
         tab.classList.add('active');
+        const activeSectionId = tab.id.replace('Tab', 'Content'); // e.g. 'homeTab' becomes 'homeContent'
+        const activeSection = document.getElementById(activeSectionId);
+        if (activeSection) {
+          activeSection.classList.add('active');
+        }
       });
     });
   </script>
