@@ -13,22 +13,25 @@
       justify-content: center;
       height: 100vh;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 2vh;
     }
 
     .title-container {
       background-color: #121212;
-      border-radius: 20px;
-      padding: 40px 60px;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+      border-radius: 2vw;
+      padding: 5vh 7vw;
+      box-shadow: 0 0 3vw rgba(0, 0, 0, 0.6);
       transition: box-shadow 0.3s ease;
+      max-width: 90vw;
+      text-align: center;
     }
 
     .title-container:hover {
-      box-shadow: 0 0 40px rgba(255, 0, 150, 0.5);
+      box-shadow: 0 0 4vw rgba(255, 0, 150, 0.5);
     }
 
     h1 {
-      font-size: 4em;
+      font-size: 6vw;
       background: linear-gradient(
         270deg,
         #ff0000,
@@ -44,6 +47,7 @@
       -webkit-text-fill-color: transparent;
       animation: rainbow 10s linear infinite;
       transition: animation-duration 0.3s ease;
+      margin: 0;
     }
 
     .title-container:hover h1 {
@@ -54,6 +58,17 @@
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 10vw;
+      }
+
+      .title-container {
+        padding: 4vh 5vw;
+        border-radius: 4vw;
+      }
     }
   </style>
 </head>
