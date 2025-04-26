@@ -7,14 +7,24 @@
   <style>
     body {
       margin: 0;
-      background-color: #121212;
-      color: white;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0d0d0d;
       display: flex;
       align-items: center;
       justify-content: center;
       height: 100vh;
-      overflow: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .title-container {
+      background-color: rgb(30, 30, 30);
+      border-radius: 20px;
+      padding: 40px 60px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .title-container:hover {
+      box-shadow: 0 0 40px rgba(255, 0, 150, 0.5);
     }
 
     h1 {
@@ -29,10 +39,15 @@
         #ff0066,
         #ff0000
       );
-      background-size: 1400% 1400%;
+      background-size: 200% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: rainbow 8s linear infinite;
+      animation: rainbow 10s linear infinite;
+      transition: animation-duration 0.3s ease;
+    }
+
+    .title-container:hover h1 {
+      animation-duration: 2s;
     }
 
     @keyframes rainbow {
@@ -43,7 +58,8 @@
   </style>
 </head>
 <body>
-  <h1>Viper Revamped</h1>
+  <div class="title-container">
+    <h1>Viper Revamped</h1>
+  </div>
 </body>
 </html>
-
