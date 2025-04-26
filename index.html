@@ -5,72 +5,71 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Viper Revamped</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      background: linear-gradient(45deg, #1a1a1a, #2b2b2b, #121212);
-      background-size: 400% 400%;
-      height: 100vh;
+      margin: 0;
+      background-color: #0d0d0d;
       display: flex;
       align-items: center;
       justify-content: center;
+      height: 100vh;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #fff;
-      animation: backgroundAnimation 20s ease infinite;
+      padding: 1vh;
     }
 
     .title-container {
-      background-color: rgba(18, 18, 18, 0.8);
-      border-radius: 2vw;
-      padding: 4vh 6vw;
-      max-width: 85vw;
+      background-color: #121212;
+      border-radius: 1.5vw;
+      padding: 2vh 4vw;
+      max-width: 80vw;
       text-align: center;
-      box-shadow: 0 0 30px rgba(0, 204, 0, 0.5);
-      backdrop-filter: blur(10px);
-      transition: transform 0.5s ease-in-out;
+      animation: greenGlow 8s linear infinite;
     }
 
     h1 {
-      font-size: 5vw;
+      font-size: 4vw;
       background: linear-gradient(
         270deg,
-        #00cc00, #66ff66, #009900, #33cc33, #00ff00
+        #00cc00,  /* Green */
+        #66ff66,  /* Light Green */
+        #009900,  /* Dark Green */
+        #33cc33,  /* Medium Green */
+        #00ff00   /* Bright Green */
       );
       background-size: 200% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: gradientShift 10s linear infinite, glowingText 1s ease-in-out infinite alternate;
-      text-shadow: 0 0 15px rgba(0, 204, 0, 0.8), 0 0 30px rgba(0, 204, 0, 0.6), 0 0 45px rgba(0, 204, 0, 0.5);
+      animation: green 10s linear infinite;
       margin: 0;
     }
 
-    @keyframes gradientShift {
+    @keyframes green {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
-    @keyframes glowingText {
+    @keyframes greenGlow {
       0% {
-        text-shadow: 0 0 10px rgba(0, 204, 0, 0.5), 0 0 30px rgba(0, 204, 0, 0.3);
+        box-shadow: 0 0 1vw #00cc00;
+      }
+      16% {
+        box-shadow: 0 0 1vw #66ff66;
+      }
+      32% {
+        box-shadow: 0 0 1vw #009900;
+      }
+      48% {
+        box-shadow: 0 0 1vw #33cc33;
+      }
+      64% {
+        box-shadow: 0 0 1vw #00ff00;
+      }
+      80% {
+        box-shadow: 0 0 1vw #009900;
       }
       100% {
-        text-shadow: 0 0 20px rgba(0, 204, 0, 1), 0 0 40px rgba(0, 204, 0, 0.8);
+        box-shadow: 0 0 1vw #00cc00;
       }
-    }
-
-    @keyframes backgroundAnimation {
-      0% { background-position: 0% 0%; }
-      50% { background-position: 100% 100%; }
-      100% { background-position: 0% 0%; }
-    }
-
-    .title-container:hover {
-      transform: scale(1.05);
     }
 
     @media (max-width: 600px) {
@@ -79,8 +78,8 @@
       }
 
       .title-container {
-        padding: 5vh 8vw;
-        border-radius: 4vw;
+        padding: 3vh 5vw;
+        border-radius: 3vw;
       }
     }
   </style>
