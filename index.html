@@ -26,57 +26,15 @@
       padding: 2vh 4vw;
       max-width: 80vw;
       text-align: center;
-      animation: greenGlow 8s linear infinite;
       visibility: hidden; /* Hide until loading is complete */
     }
 
     h1 {
-      font-size: 4vw;
-      background: linear-gradient(
-        270deg,
-        #00cc00,  /* Green */
-        #66ff66,  /* Light Green */
-        #009900,  /* Dark Green */
-        #33cc33,  /* Medium Green */
-        #00ff00   /* Bright Green */
-      );
-      background-size: 200% 200%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: green 10s linear infinite;
+      font-size: 2em; /* Smaller font size */
+      color: #00cc00; /* Solid green color */
       margin: 0;
       transition: all 0.3s ease-in-out;
       user-select: none; /* Disable text selection */
-    }
-
-    @keyframes green {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    @keyframes greenGlow {
-      0% {
-        box-shadow: 0 0 1vw #00cc00;
-      }
-      16% {
-        box-shadow: 0 0 1vw #66ff66;
-      }
-      32% {
-        box-shadow: 0 0 1vw #009900;
-      }
-      48% {
-        box-shadow: 0 0 1vw #33cc33;
-      }
-      64% {
-        box-shadow: 0 0 1vw #00ff00;
-      }
-      80% {
-        box-shadow: 0 0 1vw #009900;
-      }
-      100% {
-        box-shadow: 0 0 1vw #00cc00;
-      }
     }
 
     /* Navigation tabs style */
