@@ -162,14 +162,15 @@
     .loading-bar {
       width: 0%;
       height: 100%;
-      background-color: #00cc00;
-      animation: loadingBar 10s linear forwards; /* 10-second loading bar */
+      background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+      background-size: 300% 300%;
+      animation: loadingBarRainbow 10s linear forwards; /* 10-second loading bar with rainbow */
       border-radius: 5px;
     }
 
-    @keyframes loadingBar {
-      0% { width: 0%; }
-      100% { width: 100%; }
+    @keyframes loadingBarRainbow {
+      0% { width: 0%; background-position: 0% 50%; }
+      100% { width: 100%; background-position: 100% 50%; }
     }
 
     /* Fade out the loading overlay */
