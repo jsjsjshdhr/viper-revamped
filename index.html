@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Viper Revamped</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> <!-- Font Awesome for icons -->
   <style>
     body {
       margin: 0;
@@ -15,7 +14,8 @@
       height: 100vh;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       padding: 1vh;
-      position: relative;
+      overflow: hidden;
+      animation: backgroundShift 10s infinite alternate;
     }
 
     .title-container {
@@ -24,7 +24,7 @@
       padding: 2vh 4vw;
       max-width: 80vw;
       text-align: center;
-      animation: greenGlow 8s linear infinite;
+      animation: fadeIn 1.5s ease-out forwards, greenGlow 8s linear infinite;
     }
 
     h1 {
@@ -76,43 +76,34 @@
       }
     }
 
+    @keyframes backgroundShift {
+      0% {
+        background: linear-gradient(135deg, #1a1a1a, #333333, #4d4d4d);
+      }
+      50% {
+        background: linear-gradient(135deg, #262626, #404040, #5a5a5a);
+      }
+      100% {
+        background: linear-gradient(135deg, #1a1a1a, #333333, #4d4d4d);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
     /* Hover effect */
     h1:hover {
       animation: green 5s linear infinite; /* Speed up animation */
       transform: scale(1.1); /* Slightly enlarge the label */
-    }
-
-    /* Navigation tabs style */
-    .nav-tabs {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      display: flex;
-      align-items: center;
-    }
-
-    .nav-tab {
-      color: #00cc00;
-      padding: 10px 20px;
-      margin-left: 10px;
-      font-size: 1.2em;
-      border: 2px solid #00cc00; /* Green border */
-      border-radius: 8px; /* Less rounded corners */
-      display: flex;
-      align-items: center;
-      transition: all 0.3s ease;
-      outline: none;
-    }
-
-    .nav-tab i {
-      margin-right: 8px;
-    }
-
-    /* Hover effect with green outline animation */
-    .nav-tab:hover {
-      color: #00ff00;
-      transform: scale(1.05); /* Slightly enlarge the tab */
-      box-shadow: 0 0 5px #00cc00, 0 0 10px #00ff00; /* Green glow */
+      filter: brightness(1.2);
     }
 
     @media (max-width: 600px) {
@@ -124,11 +115,6 @@
         padding: 3vh 5vw;
         border-radius: 3vw;
       }
-
-      .nav-tab {
-        font-size: 1em;
-        padding: 8px 15px;
-      }
     }
   </style>
 </head>
@@ -137,17 +123,58 @@
     <h1>Viper Revamped</h1>
   </div>
 
-  <!-- Navigation Tabs -->
-  <div class="nav-tabs">
-    <div class="nav-tab">
-      <i class="fas fa-home"></i> Home
-    </div>
-    <div class="nav-tab">
-      <i class="fas fa-gamepad"></i> Games
-    </div>
-    <div class="nav-tab">
-      <i class="fas fa-search"></i> Search
-    </div>
-  </div>
+  <!-- Optional: Adding a particle effect -->
+  <script>
+    // This is for adding a simple particle effect in the background
+    const numParticles = 100;
+    const particles = [];
+
+    // Create particle class
+    class Particle {
+      constructor() {
+        this.x = Math.random() * window.innerWidth;
+        this.y = Math.random() * window.innerHeight;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = Math.random() * 3 - 1.5;
+        this.speedY = Math.random() * 3 - 1.5;
+        this.color = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.7)`;
+      }
+
+      draw(context) {
+        context.beginPath();
+        context.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        context.fillStyle = this.color;
+        context.fill();
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.size > 0.2) this.size -= 0.05;
+      }
+    }
+
+    // Set up canvas and animation loop
+    const canvas = document.createElement('canvas');
+    document.body.appendChild(canvas);
+    const context = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    for (let i = 0; i < numParticles; i++) {
+      particles.push(new Particle());
+    }
+
+    function animateParticles() {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].draw(context);
+        particles[i].update();
+      }
+      requestAnimationFrame(animateParticles);
+    }
+
+    animateParticles();
+  </script>
 </body>
 </html>
