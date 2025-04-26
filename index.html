@@ -298,4 +298,52 @@
 
   <!-- Fullscreen Game Iframe Overlay -->
   <div id="iframeOverlay">
-    <
+    <button onclick="closeIframe()">Close</button>
+    <iframe id="gameIframe" src="" allowfullscreen></iframe>
+  </div>
+
+  <script>
+    setTimeout(function () {
+      document.querySelector('.loading-overlay').classList.add('loaded');
+      setTimeout(function () {
+        document.querySelector('.loading-overlay').remove();
+        document.querySelector('.title-container').style.visibility = 'visible';
+      }, 1000);
+    }, 10000);
+
+    const tabs = document.querySelectorAll('.nav-tab');
+    const sections = document.querySelectorAll('.content-section');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', function () {
+        tabs.forEach(t => t.classList.remove('active'));
+        sections.forEach(section => section.classList.remove('active'));
+        tab.classList.add('active');
+        const activeSectionId = tab.id.replace('Tab', 'Content');
+        const activeSection = document.getElementById(activeSectionId);
+        if (activeSection) {
+          activeSection.classList.add('active');
+        }
+      });
+    });
+
+    document.querySelectorAll('.game-button').forEach(button => {
+      button.addEventListener('click', () => {
+        const gameSrc = button.getAttribute('data-src');
+        if (gameSrc) {
+          const iframe = document.getElementById('gameIframe');
+          iframe.src = gameSrc;
+          document.getElementById('iframeOverlay').style.display = 'flex';
+        }
+      });
+    });
+
+    function closeIframe() {
+      const overlay = document.getElementById('iframeOverlay');
+      const iframe = document.getElementById('gameIframe');
+      iframe.src = '';
+      overlay.style.display = 'none';
+    }
+  </script>
+</body>
+</html>
