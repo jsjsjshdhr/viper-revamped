@@ -7,46 +7,42 @@
   <style>
     body {
       margin: 0;
-      background-color: #003300;
+      background-color: #0d0d0d;
       display: flex;
       align-items: center;
       justify-content: center;
       height: 100vh;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       padding: 1vh;
-      color: #e6f7e6;
-      overflow: hidden;
-      transition: background-color 1s ease;
     }
 
     .title-container {
-      background-color: rgba(0, 51, 0, 0.8);
+      background-color: #121212;
       border-radius: 1.5vw;
       padding: 2vh 4vw;
       max-width: 80vw;
       text-align: center;
-      box-shadow: 0 0 2vw rgba(0, 255, 0, 0.3), 0 0 1vw rgba(0, 255, 0, 0.5);
-      animation: greenGlow 8s linear infinite, bgShift 10s infinite alternate;
+      animation: greenGlow 8s linear infinite;
     }
 
     h1 {
       font-size: 4vw;
       background: linear-gradient(
         270deg,
-        #33cc33,
-        #66ff66,
-        #00cc00,
-        #009900,
-        #33cc33
+        #00cc00,  /* Green */
+        #66ff66,  /* Light Green */
+        #009900,  /* Dark Green */
+        #33cc33,  /* Medium Green */
+        #00ff00   /* Bright Green */
       );
       background-size: 200% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: greenGlowText 10s linear infinite;
+      animation: green 10s linear infinite;
       margin: 0;
     }
 
-    @keyframes greenGlowText {
+    @keyframes green {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
@@ -54,37 +50,25 @@
 
     @keyframes greenGlow {
       0% {
-        box-shadow: 0 0 2vw rgba(51, 204, 51, 1), 0 0 3vw rgba(51, 204, 51, 0.5);
+        box-shadow: 0 0 1vw #00cc00;
       }
       16% {
-        box-shadow: 0 0 2vw rgba(102, 255, 102, 1), 0 0 3vw rgba(102, 255, 102, 0.5);
+        box-shadow: 0 0 1vw #66ff66;
       }
       32% {
-        box-shadow: 0 0 2vw rgba(0, 204, 0, 1), 0 0 3vw rgba(0, 204, 0, 0.5);
+        box-shadow: 0 0 1vw #009900;
       }
       48% {
-        box-shadow: 0 0 2vw rgba(0, 153, 0, 1), 0 0 3vw rgba(0, 153, 0, 0.5);
+        box-shadow: 0 0 1vw #33cc33;
       }
       64% {
-        box-shadow: 0 0 2vw rgba(51, 204, 51, 1), 0 0 3vw rgba(51, 204, 51, 0.5);
+        box-shadow: 0 0 1vw #00ff00;
       }
       80% {
-        box-shadow: 0 0 2vw rgba(0, 204, 0, 1), 0 0 3vw rgba(0, 204, 0, 0.5);
+        box-shadow: 0 0 1vw #009900;
       }
       100% {
-        box-shadow: 0 0 2vw rgba(102, 255, 102, 1), 0 0 3vw rgba(102, 255, 102, 0.5);
-      }
-    }
-
-    @keyframes bgShift {
-      0% {
-        background-color: #003300;
-      }
-      50% {
-        background-color: #006600;
-      }
-      100% {
-        background-color: #003300;
+        box-shadow: 0 0 1vw #00cc00;
       }
     }
 
