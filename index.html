@@ -143,13 +143,17 @@
       font-size: 2vw;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       z-index: 9999;
-      backdrop-filter: blur(5px); /* Blur background */
+      backdrop-filter: blur(2px); /* Fainter blur */
+      visibility: visible;
+      opacity: 1;
+      transition: opacity 2s ease-out;
     }
 
     .loading-overlay .message {
       margin: 1vw 0;
       opacity: 0;
       animation: fadeInOut 4s ease-in-out infinite;
+      visibility: hidden; /* Initially hidden */
     }
 
     .loading-overlay .message:nth-child(1) {
@@ -157,29 +161,33 @@
     }
 
     .loading-overlay .message:nth-child(2) {
-      animation-delay: 4s;
+      animation-delay: 10s;
     }
 
     .loading-overlay .message:nth-child(3) {
-      animation-delay: 8s;
+      animation-delay: 20s;
     }
 
     .loading-overlay .message:nth-child(4) {
-      animation-delay: 12s;
+      animation-delay: 30s;
     }
 
     @keyframes fadeInOut {
       0% {
         opacity: 0;
+        visibility: hidden;
       }
       25% {
         opacity: 1;
+        visibility: visible;
       }
       50% {
         opacity: 0;
+        visibility: hidden;
       }
       100% {
         opacity: 0;
+        visibility: hidden;
       }
     }
 
@@ -197,7 +205,7 @@
       width: 0%;
       height: 100%;
       background-color: #00cc00;
-      animation: loadingBar 20s linear forwards;
+      animation: loadingBar 40s linear forwards; /* Slower loading bar */
       border-radius: 5px;
     }
 
@@ -244,13 +252,13 @@
   </div>
 
   <script>
-    // Simulate loading complete after 20 seconds
+    // Simulate loading complete after 40 seconds
     setTimeout(function() {
       // Hide the loading overlay
       document.querySelector('.loading-overlay').classList.add('loaded');
       // Show the main content
       document.querySelector('.title-container').style.visibility = 'visible';
-    }, 20000); // 20 seconds
+    }, 10000); // 40 seconds to match the slower loading
   </script>
 </body>
 </html>
