@@ -20,14 +20,9 @@
       background-color: #121212;
       border-radius: 1.5vw;
       padding: 2vh 4vw;
-      box-shadow: 0 0 1.5vw rgba(0, 0, 0, 0.6);
-      transition: box-shadow 0.3s ease;
       max-width: 80vw;
       text-align: center;
-    }
-
-    .title-container:hover {
-      box-shadow: 0 0 2vw rgba(255, 0, 150, 0.5);
+      animation: rainbowGlow 8s linear infinite;
     }
 
     h1 {
@@ -45,28 +40,8 @@
       background-size: 200% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: rainbow 10s linear infinite, glowPulse 3s ease-in-out infinite;
-      transition: animation-duration 0.3s ease;
+      animation: rainbow 10s linear infinite;
       margin: 0;
-
-      text-shadow:
-        0 0 0.5vw #ff0000,
-        0 0 1vw #ff9900,
-        0 0 1.5vw #33cc33,
-        0 0 2vw #00ccff,
-        0 0 2.5vw #9933ff,
-        0 0 3vw #ff0066;
-    }
-
-    .title-container:hover h1 {
-      animation-duration: 2s, 1.5s;
-      text-shadow:
-        0 0 1vw #ff0000,
-        0 0 1.5vw #ff9900,
-        0 0 2vw #33cc33,
-        0 0 2.5vw #00ccff,
-        0 0 3vw #9933ff,
-        0 0 3.5vw #ff0066;
     }
 
     @keyframes rainbow {
@@ -75,24 +50,27 @@
       100% { background-position: 0% 50%; }
     }
 
-    @keyframes glowPulse {
-      0%, 100% {
-        text-shadow:
-          0 0 0.5vw #ff0000,
-          0 0 1vw #ff9900,
-          0 0 1.5vw #33cc33,
-          0 0 2vw #00ccff,
-          0 0 2.5vw #9933ff,
-          0 0 3vw #ff0066;
+    @keyframes rainbowGlow {
+      0% {
+        box-shadow: 0 0 1vw #ff0000;
       }
-      50% {
-        text-shadow:
-          0 0 1vw #ff0000,
-          0 0 1.5vw #ff9900,
-          0 0 2vw #33cc33,
-          0 0 2.5vw #00ccff,
-          0 0 3vw #9933ff,
-          0 0 3.5vw #ff0066;
+      16% {
+        box-shadow: 0 0 1vw #ff9900;
+      }
+      32% {
+        box-shadow: 0 0 1vw #33cc33;
+      }
+      48% {
+        box-shadow: 0 0 1vw #00ccff;
+      }
+      64% {
+        box-shadow: 0 0 1vw #9933ff;
+      }
+      80% {
+        box-shadow: 0 0 1vw #ff0066;
+      }
+      100% {
+        box-shadow: 0 0 1vw #ff0000;
       }
     }
 
