@@ -92,7 +92,7 @@
     }
 
     .nav-tab {
-      background-color: #1a1a1a;
+      background: linear-gradient(90deg, #00cc00, #009900);
       color: white;
       padding: 10px 20px;
       margin-left: 10px;
@@ -100,16 +100,19 @@
       display: flex;
       align-items: center;
       font-size: 1.2em;
-      transition: background-color 0.3s ease;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 1vw #00cc00; /* Initial green glow */
     }
 
     .nav-tab i {
       margin-right: 8px;
     }
 
+    /* Hover effect with animation */
     .nav-tab:hover {
-      background-color: #333;
-      cursor: pointer;
+      background: linear-gradient(90deg, #33cc33, #00ff00); /* Lighter green on hover */
+      transform: scale(1.05); /* Slightly enlarge the tab */
+      box-shadow: 0 0 2vw #00ff00; /* Stronger green glow */
     }
 
     @media (max-width: 600px) {
