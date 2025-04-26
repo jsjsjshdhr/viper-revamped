@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Viper Revamped</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
   <style>
     body {
       margin: 0;
@@ -167,19 +167,47 @@
       transition: transform 0.3s ease;
     }
 
-    .game-button img {
+    .game-button:hover {
+      transform: scale(1.05);
+    }
+
+    .image-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
+    .image-wrapper img {
       width: 150px;
       height: 150px;
       object-fit: cover;
       border-radius: 15px;
       display: block;
+      transition: all 0.3s ease;
     }
 
-    .game-button:hover {
-      transform: scale(1.05);
+    .game-button:hover img {
+      filter: blur(4px) brightness(0.7);
     }
 
-    /* Iframe overlay */
+    .game-title {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 1.1em;
+      font-weight: bold;
+      text-shadow: 0 0 10px black;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .game-button:hover .game-title {
+      opacity: 1;
+    }
+
     #iframeOverlay {
       position: fixed;
       top: 0;
@@ -243,13 +271,22 @@
   <!-- Games Page -->
   <div id="gamesContent" class="content-section">
     <div class="game-button" data-src="/play/liquid/liquid.html">
-      <img src="/img/liquid.jpg" alt="Monkey Mart">
+      <div class="image-wrapper">
+        <img src="/img/liquid.jpg" alt="Monkey Mart">
+        <div class="game-title">Monkey Mart</div>
+      </div>
     </div>
     <div class="game-button" data-src="https://example.com/game2">
-      <img src="https://via.placeholder.com/150" alt="Game 2">
+      <div class="image-wrapper">
+        <img src="https://via.placeholder.com/150" alt="Game 2">
+        <div class="game-title">Game 2</div>
+      </div>
     </div>
     <div class="game-button" data-src="https://example.com/game3">
-      <img src="https://via.placeholder.com/150" alt="Game 3">
+      <div class="image-wrapper">
+        <img src="https://via.placeholder.com/150" alt="Game 3">
+        <div class="game-title">Game 3</div>
+      </div>
     </div>
   </div>
 
@@ -261,56 +298,4 @@
 
   <!-- Fullscreen Game Iframe Overlay -->
   <div id="iframeOverlay">
-    <button onclick="closeIframe()">Close</button>
-    <iframe id="gameIframe" src="" allowfullscreen></iframe>
-  </div>
-
-  <script>
-    // Loading overlay fade-out
-    setTimeout(function() {
-      document.querySelector('.loading-overlay').classList.add('loaded');
-      setTimeout(function() {
-        document.querySelector('.loading-overlay').remove();
-        document.querySelector('.title-container').style.visibility = 'visible';
-      }, 1000);
-    }, 10000);
-
-    // Tab switching
-    const tabs = document.querySelectorAll('.nav-tab');
-    const sections = document.querySelectorAll('.content-section');
-
-    tabs.forEach(tab => {
-      tab.addEventListener('click', function() {
-        tabs.forEach(t => t.classList.remove('active'));
-        sections.forEach(section => section.classList.remove('active'));
-        tab.classList.add('active');
-        const activeSectionId = tab.id.replace('Tab', 'Content');
-        const activeSection = document.getElementById(activeSectionId);
-        if (activeSection) {
-          activeSection.classList.add('active');
-        }
-      });
-    });
-
-    // Open game in fullscreen iframe
-    document.querySelectorAll('.game-button').forEach(button => {
-      button.addEventListener('click', () => {
-        const gameSrc = button.getAttribute('data-src');
-        if (gameSrc) {
-          const iframe = document.getElementById('gameIframe');
-          iframe.src = gameSrc;
-          document.getElementById('iframeOverlay').style.display = 'flex';
-        }
-      });
-    });
-
-    // Close iframe
-    function closeIframe() {
-      const overlay = document.getElementById('iframeOverlay');
-      const iframe = document.getElementById('gameIframe');
-      iframe.src = '';
-      overlay.style.display = 'none';
-    }
-  </script>
-</body>
-</html>
+    <
