@@ -92,27 +92,27 @@
     }
 
     .nav-tab {
-      background: linear-gradient(90deg, #00cc00, #009900);
-      color: white;
+      color: #00cc00;
       padding: 10px 20px;
       margin-left: 10px;
-      border-radius: 25px;
+      font-size: 1.2em;
+      border: 2px solid #00cc00; /* Green border */
+      border-radius: 8px; /* Less rounded corners */
       display: flex;
       align-items: center;
-      font-size: 1.2em;
       transition: all 0.3s ease;
-      box-shadow: 0 0 1vw #00cc00; /* Initial green glow */
+      outline: none;
     }
 
     .nav-tab i {
       margin-right: 8px;
     }
 
-    /* Hover effect with animation */
+    /* Hover effect with green outline animation */
     .nav-tab:hover {
-      background: linear-gradient(90deg, #33cc33, #00ff00); /* Lighter green on hover */
+      color: #00ff00;
       transform: scale(1.05); /* Slightly enlarge the tab */
-      box-shadow: 0 0 2vw #00ff00; /* Stronger green glow */
+      box-shadow: 0 0 5px #00cc00, 0 0 10px #00ff00; /* Green glow */
     }
 
     @media (max-width: 600px) {
