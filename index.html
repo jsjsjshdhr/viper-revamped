@@ -143,7 +143,7 @@
       font-size: 2vw;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       z-index: 9999;
-      backdrop-filter: blur(2px); /* Fainter blur */
+      backdrop-filter: blur(5px); /* Strong blur effect */
       visibility: visible;
       opacity: 1;
       transition: opacity 1s ease-out;
@@ -226,7 +226,8 @@
     .loading-overlay.loaded {
       opacity: 0;
       visibility: hidden;
-      transition: opacity 1s ease-out;
+      backdrop-filter: blur(0); /* Remove blur */
+      transition: opacity 1s ease-out, backdrop-filter 1s ease-out;
     }
   </style>
 </head>
@@ -262,7 +263,7 @@
   <script>
     // Simulate loading complete after 10 seconds
     setTimeout(function() {
-      // Hide the loading overlay
+      // Hide the loading overlay and apply fade-out effect
       document.querySelector('.loading-overlay').classList.add('loaded');
       // Show the main content
       document.querySelector('.title-container').style.visibility = 'visible';
