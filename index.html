@@ -25,7 +25,6 @@
       padding: 2vh 4vw;
       max-width: 80vw;
       text-align: center;
-      animation: rainbowGlow 8s linear infinite;
       visibility: hidden; /* Hide until loading is complete */
     }
 
@@ -48,30 +47,6 @@
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
-    }
-
-    @keyframes rainbowGlow {
-      0% {
-        box-shadow: 0 0 1vw red;
-      }
-      16% {
-        box-shadow: 0 0 1vw orange;
-      }
-      32% {
-        box-shadow: 0 0 1vw yellow;
-      }
-      48% {
-        box-shadow: 0 0 1vw green;
-      }
-      64% {
-        box-shadow: 0 0 1vw blue;
-      }
-      80% {
-        box-shadow: 0 0 1vw indigo;
-      }
-      100% {
-        box-shadow: 0 0 1vw violet;
-      }
     }
 
     /* Navigation tabs style */
