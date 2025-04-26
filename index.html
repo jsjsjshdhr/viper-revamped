@@ -52,56 +52,38 @@
 
     /* Navigation tabs style */
     .nav-tabs {
-      position: absolute;
-      top: 10px;
-      right: 10px;
       display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
       align-items: center;
-      z-index: 1;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #0d0d0d;
+      padding: 15px;
+      z-index: 10;
     }
 
     .nav-tab {
       color: #fff;
-      background-color: #212121; /* Dark background for the tabs */
       padding: 10px 20px;
-      margin-left: 10px;
       font-size: 1.2em;
-      border: 2px solid #212121;
       border-radius: 8px;
-      display: flex;
-      align-items: center;
-      transition: all 0.3s ease;
-      outline: none;
       cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
     }
 
-    .nav-tab i {
-      margin-right: 8px;
-    }
-
-    /* Hover effect with tab background change */
+    /* Remove background color on hover */
     .nav-tab:hover {
-      background-color: #333; /* Darker background on hover */
+      background-color: #333;
     }
 
     /* Active tab style */
     .nav-tab.active {
-      background-color: #212121;
       color: #fff;
-      border: 2px solid #fff; /* White border for active tab */
-      animation: rainbowOutline 5s linear infinite; /* Rainbow animation for the outline */
-    }
-
-    /* Rainbow outline animation for active tab */
-    @keyframes rainbowOutline {
-      0% { border-color: red; }
-      14% { border-color: orange; }
-      28% { border-color: yellow; }
-      42% { border-color: green; }
-      57% { border-color: blue; }
-      71% { border-color: indigo; }
-      85% { border-color: violet; }
-      100% { border-color: red; }
+      border-bottom: 3px solid #fff;
     }
 
     /* Loading Overlay */
@@ -183,11 +165,6 @@
     .game-button:hover {
       background-color: #444;
       transform: translateY(-3px);
-    }
-
-    .game-button img {
-      width: 100%;
-      border-radius: 8px;
     }
 
     .game-title {
