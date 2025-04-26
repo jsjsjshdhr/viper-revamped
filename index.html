@@ -14,8 +14,30 @@
       height: 100vh;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       padding: 1vh;
-      overflow: hidden;
-      animation: backgroundShift 10s infinite alternate;
+      overflow: hidden; /* Prevent scrollbars during loading */
+    }
+
+    /* Loading Bar Styles */
+    .loading-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #333;
+      padding: 10px;
+      text-align: center;
+      color: white;
+      font-size: 1.2vw;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      z-index: 1000; /* Make sure it's above other content */
+    }
+
+    .loading-bar {
+      width: 0;
+      height: 10px;
+      background-color: #00cc00;
+      border-radius: 5px;
+      transition: width 0.3s ease-in-out;
     }
 
     .title-container {
@@ -24,7 +46,9 @@
       padding: 2vh 4vw;
       max-width: 80vw;
       text-align: center;
-      animation: fadeIn 1.5s ease-out forwards, greenGlow 8s linear infinite;
+      animation: greenGlow 8s linear infinite;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
     }
 
     h1 {
@@ -76,34 +100,10 @@
       }
     }
 
-    @keyframes backgroundShift {
-      0% {
-        background: linear-gradient(135deg, #1a1a1a, #333333, #4d4d4d);
-      }
-      50% {
-        background: linear-gradient(135deg, #262626, #404040, #5a5a5a);
-      }
-      100% {
-        background: linear-gradient(135deg, #1a1a1a, #333333, #4d4d4d);
-      }
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: scale(0.8);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
     /* Hover effect */
     h1:hover {
       animation: green 5s linear infinite; /* Speed up animation */
       transform: scale(1.1); /* Slightly enlarge the label */
-      filter: brightness(1.2);
     }
 
     @media (max-width: 600px) {
@@ -119,62 +119,36 @@
   </style>
 </head>
 <body>
+  <!-- Loading bar section -->
+  <div class="loading-container">
+    <p>Parsing the code...</p>
+    <div class="loading-bar" id="loadingBar"></div>
+  </div>
+
+  <!-- Content section -->
   <div class="title-container">
     <h1>Viper Revamped</h1>
   </div>
 
-  <!-- Optional: Adding a particle effect -->
   <script>
-    // This is for adding a simple particle effect in the background
-    const numParticles = 100;
-    const particles = [];
+    // Simulate loading progress
+    let progress = 0;
+    const loadingBar = document.getElementById("loadingBar");
+    const loadingInterval = setInterval(() => {
+      progress += 10;
+      loadingBar.style.width = progress + "%";
 
-    // Create particle class
-    class Particle {
-      constructor() {
-        this.x = Math.random() * window.innerWidth;
-        this.y = Math.random() * window.innerHeight;
-        this.size = Math.random() * 3 + 1;
-        this.speedX = Math.random() * 3 - 1.5;
-        this.speedY = Math.random() * 3 - 1.5;
-        this.color = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.7)`;
+      if (progress >= 100) {
+        clearInterval(loadingInterval);
+        document.querySelector(".loading-container").style.display = "none"; // Hide loading bar
+        document.querySelector(".title-container").style.opacity = 1; // Show content
       }
+    }, 500); // Update every 500ms
 
-      draw(context) {
-        context.beginPath();
-        context.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        context.fillStyle = this.color;
-        context.fill();
-      }
-
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.size > 0.2) this.size -= 0.05;
-      }
-    }
-
-    // Set up canvas and animation loop
-    const canvas = document.createElement('canvas');
-    document.body.appendChild(canvas);
-    const context = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    for (let i = 0; i < numParticles; i++) {
-      particles.push(new Particle());
-    }
-
-    function animateParticles() {
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      for (let i = 0; i < particles.length; i++) {
-        particles[i].draw(context);
-        particles[i].update();
-      }
-      requestAnimationFrame(animateParticles);
-    }
-
-    animateParticles();
+    // Optional: Add some delay before content is visible
+    setTimeout(() => {
+      document.querySelector(".title-container").style.opacity = 1;
+    }, 5000); // Delay for 5 seconds before fading in content
   </script>
 </body>
 </html>
