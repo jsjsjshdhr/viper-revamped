@@ -26,7 +26,7 @@
       padding: 2vh 4vw;
       max-width: 80vw;
       text-align: center;
-      visibility: hidden; /* Hide until loading is complete */
+      visibility: hidden;
     }
 
     h1 {
@@ -41,7 +41,7 @@
       animation: rainbow 10s linear infinite;
       margin: 0;
       transition: all 0.3s ease-in-out;
-      user-select: none; /* Disable text selection */
+      user-select: none;
     }
 
     @keyframes rainbow {
@@ -50,7 +50,6 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* Navigation tabs style */
     .nav-tabs {
       display: flex;
       flex-direction: row;
@@ -75,18 +74,15 @@
       text-align: center;
     }
 
-    /* Remove background color on hover */
     .nav-tab:hover {
       background-color: #333;
     }
 
-    /* Active tab style */
     .nav-tab.active {
       color: #fff;
       border-bottom: 3px solid #fff;
     }
 
-    /* Loading Overlay */
     .loading-overlay {
       position: fixed;
       top: 0;
@@ -102,13 +98,12 @@
       font-size: 2vw;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       z-index: 9999;
-      backdrop-filter: blur(5px); /* Strong blur effect */
+      backdrop-filter: blur(5px);
       visibility: visible;
       opacity: 1;
       transition: opacity 1s ease-out;
     }
 
-    /* Loading Bar */
     .loading-bar-container {
       width: 80%;
       height: 10px;
@@ -123,7 +118,7 @@
       height: 100%;
       background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
       background-size: 300% 300%;
-      animation: loadingBarRainbow 10s linear forwards; /* 10-second loading bar with rainbow */
+      animation: loadingBarRainbow 10s linear forwards;
       border-radius: 5px;
     }
 
@@ -132,7 +127,6 @@
       100% { width: 100%; background-position: 100% 50%; }
     }
 
-    /* Content Sections */
     .content-section {
       display: none;
       padding: 20px;
@@ -148,28 +142,49 @@
       display: block;
     }
 
-    /* Game button style */
+    /* Fullscreen Games Content */
+    #gamesContent.content-section {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #121212;
+      color: white;
+      padding-top: 80px; /* leave space for nav */
+      box-sizing: border-box;
+      overflow-y: auto;
+      text-align: center;
+      display: none;
+    }
+
+    #gamesContent.content-section.active {
+      display: block;
+    }
+
     .game-button {
       display: inline-block;
-      background-color: #333;
-      color: #fff;
-      padding: 10px 15px;
-      margin: 10px;
-      border-radius: 8px;
-      text-align: center;
-      width: 150px;
+      margin: 15px;
       cursor: pointer;
-      transition: all 0.3s ease;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .game-button img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 15px;
+      display: block;
     }
 
     .game-button:hover {
-      background-color: #444;
-      transform: translateY(-3px);
+      transform: scale(1.05);
     }
 
     .game-title {
-      margin-top: 10px;
-      font-size: 1.1em;
+      display: none;
     }
   </style>
 </head>
@@ -198,29 +213,27 @@
     </div>
   </div>
 
-  <!-- Content Sections -->
+  <!-- Games Page -->
   <div id="gamesContent" class="content-section">
-    <h2>Games</h2>
     <div class="game-button">
-      <img src="/img/monkey.jpg" alt="Game 1">
-      <div class="game-title">Monkey Mart</div>
+      <img src="/img/monkey.jpg" alt="Monkey Mart">
     </div>
     <div class="game-button">
       <img src="https://via.placeholder.com/150" alt="Game 2">
-      <div class="game-title">Game 2</div>
     </div>
     <div class="game-button">
       <img src="https://via.placeholder.com/150" alt="Game 3">
-      <div class="game-title">Game 3</div>
     </div>
   </div>
+
+  <!-- Search Page -->
   <div id="searchContent" class="content-section">
     <h2>Welcome to the Search Section</h2>
     <p>Content for the search section goes here.</p>
   </div>
 
   <script>
-    // Set up the loading overlay to fade out and remove
+    // Loading overlay fade-out logic
     setTimeout(function() {
       document.querySelector('.loading-overlay').classList.add('loaded');
       setTimeout(function() {
@@ -229,19 +242,17 @@
       }, 1000);
     }, 10000);
 
-    // JavaScript for handling active tab selection and content display
+    // Tab switching logic
     const tabs = document.querySelectorAll('.nav-tab');
     const sections = document.querySelectorAll('.content-section');
 
     tabs.forEach(tab => {
       tab.addEventListener('click', function() {
-        // Remove 'active' class from all tabs and hide all sections
         tabs.forEach(t => t.classList.remove('active'));
         sections.forEach(section => section.classList.remove('active'));
 
-        // Add 'active' class to the clicked tab and display the corresponding section
         tab.classList.add('active');
-        const activeSectionId = tab.id.replace('Tab', 'Content'); // e.g. 'homeTab' becomes 'homeContent'
+        const activeSectionId = tab.id.replace('Tab', 'Content');
         const activeSection = document.getElementById(activeSectionId);
         if (activeSection) {
           activeSection.classList.add('active');
